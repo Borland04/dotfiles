@@ -85,8 +85,8 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 ##         START APPLICATIONS        ##
 #######################################
 
-#bindsym $mod+d exec dmenu_run -nb "$bg-color" -nf "$inactive-text-color" -sb "$dark-green" -sf "$text-color" -fn "System San Francisco Display 9"
-bindsym $mod+d exec --no-startup-id rofi -show run
+#bindsym $mod+d exec dmenu -nb "$black" -nf "$darkwhite" -sb "$darkgreen" -sf "$white" -fn "Hack 9"
+bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $mod+F2 exec palemoon
 bindsym $mod+F3 exec nautilus
 

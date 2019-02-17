@@ -1,9 +1,9 @@
 ! rofi
-rofi.modi: run
+rofi.modi: drun
 rofi.font: Hack 15
 rofi.width: 100
-rofi.lines: 5
-rofi.columns: 1
+rofi.lines: 20
+rofi.columns: 2
 rofi.opacity: 80
 !                    bg       fg      altbg    hlbg     hlfg
 rofi.color-normal: #282828, #ebdbb2, #282828, #ebdbb2, #282828
@@ -14,6 +14,10 @@ rofi.bw: 0
 rofi.location: 2
 rofi.padding: 100
 rofi.fuzzy: false
+rofi.show-icons: true
+rofi.icon-theme: gnome
+rofi.drun-show-actions: true
+
 
 ! === gruvbox color scheme ===
 *background: #1d2021
