@@ -19,30 +19,11 @@ rofi.icon-theme: gnome
 rofi.drun-show-actions: true
 
 
-! === gruvbox color scheme ===
-*background: #1d2021
-*foreground: #ebdbb2
-! Black + DarkGrey
-*color0:  #000000
-*color8:  #928374
-! DarkRed + Red
-*color1:  #cc241d
-*color9:  #fb4934
-! DarkGreen + Green
-*color2:  #009300
-*color10: #b8bb26
-! DarkYellow + Yellow
-*color3:  #d79921
-*color11: #fabd2f
-! DarkBlue + Blue
-*color4:  #458588
-*color12: #83a598
-! DarkMagenta + Magenta
-*color5:  #b16286
-*color13: #d3869b
-! DarkCyan + Cyan
-*color6:  #689d6a
-*color14: #8ec07c
-! LightGrey + White
-*color7:  #a89984
-*color15: #ffffff
+*black: #000000
+*grey: #333333
+*white: #FFFFFF
+*transparent: #00000000
+*blue: #333399
+*lightblue: #3366CC
+*aqua: #3399FF
+*red: #FF0000

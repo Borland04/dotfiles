@@ -7,38 +7,29 @@ font pango:Hack 10
 ##             COLORS                ##
 #######################################
 
-set_from_resource $darkred     color1  #000000
-set_from_resource $red         color9  #000000
-set_from_resource $darkgreen   color2  #000000
-set_from_resource $green       color10 #000000
-set_from_resource $darkyellow  color3  #000000
-set_from_resource $yellow      color11 #000000
-set_from_resource $darkblue    color4  #000000
-set_from_resource $blue        color12 #000000
-set_from_resource $darkmagenta color5  #000000
-set_from_resource $magenta     color13 #000000
-set_from_resource $darkcyan    color6  #000000
-set_from_resource $cyan        color14 #000000
-set_from_resource $darkwhite   color7  #000000
-set_from_resource $white       color15 #000000
-set_from_resource $darkgrey    color8  #000000
-set_from_resource $black       color0  #000000
-# Use custom colors for black
-set $transparent #00000000
+set_from_resource $blue        blue        #000000
+set_from_resource $lightblue   lightblue   #000000
+set_from_resource $aqua        aqua        #000000
+set_from_resource $red         red         #000000
+set_from_resource $black       black       #000000
+set_from_resource $grey        grey        #000000
+set_from_resource $white       white       #000000
+set_from_resource $transparent transparent #000000
 
 # window colors
 #                       border              background         text                 indicator
-client.focused          $darkgreen          $darkgreen         $white               #00ff00
-client.unfocused        $black              $black             $darkwhite           #00ff00
-client.focused_inactive $black              $black             $darkwhite           #00ff00
-client.urgent           $darkred            $darkred           $white               #00ff00
+client.focused          $aqua               $blue              $white               $white
+client.unfocused        $grey               $black             $white               $white
+client.focused_inactive $black              $black             $white               $white
+client.urgent           $red                $red               $black               $white
 
 #######################################
 
 for_window [class="^.*"] border pixel 2
 
 smart_gaps on
-gaps inner 7
+gaps inner 10
+gaps outer -8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -52,15 +43,15 @@ bindsym $mod+Shift+q kill
 
 # screenshot
 bindsym --release Print exec --no-startup-id "maim -p 0 -c 0.96,0.5,0.09 $HOME/Pictures/Screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png"
-bindsym --release Shift+Print exec --no-startup-id "maim -s -p 0 -c 0.96,0.5,0.09 $HOME/Pictures/Screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png"
+bindsym --release Mod1+Sys_Req exec --no-startup-id "maim -i $(xdotool getactivewindow) $HOME/Pictures/Screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png"
 
 #######################################
 ##              SOUND                ##
 #######################################
 
 #bindsym $mod+Ctrl+m exec gnome-terminal -e 'alsamixer'
-exec --no-startup-id pulseaudio
-exec --no-startup-id pa-applet
+exec --no-startup-id pulseaudio & 
+exec --no-startup-id pa-applet & 
 bindsym $mod+Ctrl+m exec pavucontrol
 
 #######################################
@@ -85,8 +76,8 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 ##         START APPLICATIONS        ##
 #######################################
 
-#bindsym $mod+d exec dmenu -nb "$black" -nf "$darkwhite" -sb "$darkgreen" -sf "$white" -fn "Hack 9"
-bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+d exec --no-startup-id dmenu_run -nb "$blue" -nf "$white" -sb "$lightblue" -sf "$white" -fn "Hack 8"
+bindsym $mod+Shift+d exec --no-startup-id rofi -show drun
 bindsym $mod+F2 exec palemoon
 bindsym $mod+F3 exec nautilus
 
@@ -96,12 +87,12 @@ bindsym $mod+F3 exec nautilus
 #######################################
 
 exec "setxkbmap -layout us,ru && setxkbmap -option 'grp:alt_shift_toggle'"
-exec --no-startup-id "feh --bg-scale ~/Pictures/Wallpapers/wallpaper.jpg"
+exec --no-startup-id "feh --bg-scale --randomize ~/Pictures/Wallpapers/*"
 exec --no-startup-id compton -b
-exec --no-startup-id nm-applet
-exec --no-startup-id udiskie -Ftn2
-#exec --no-startup-id xfce4-power-manager
-#exec --no-startup-id xautolock -time 10 -notify 30
+exec --no-startup-id nm-applet &
+exec --no-startup-id udiskie -Ftn2 &
+#exec --no-startup-id xfce4-power-manager &
+#exec --no-startup-id xautolock -time 10 -notify 30 &
 
 #######################################
 #######################################
@@ -257,22 +248,22 @@ hide_edge_borders both
 # finds out, if available)
 bar {
     status_command i3blocks -c ~/.config/i3/i3blocks.conf
-    i3bar_command i3bar -t
+    i3bar_command i3bar 
     position top
     strip_workspace_numbers yes
     bindsym button4 nop
     bindsym button5 nop
-    tray_padding 0
+    tray_padding 2
     colors {
-        statusline         $darkwhite
-        background         $transparent
-        separator          $transparent
+        statusline         $white
+        background         $blue
+        separator          $blue
 
 #                          BORDER       BACKGROUND   TEXT
-        focused_workspace  $transparent $transparent $white
-        inactive_workspace $transparent $transparent $darkwhite
-        active_workspace   $transparent $transparent $darkwhite
-        urgent_workspace   $darkred     $darkred     $black
-	binding_mode       $darkred     $darkred     $black
+        focused_workspace  $blue        $lightblue   $white
+        inactive_workspace $blue        $blue        $white
+        active_workspace   $blue        $blue        $aqua
+        urgent_workspace   $red         $red         $white
+	binding_mode       $red         $red         $white
     }
 }
