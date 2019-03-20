@@ -1,4 +1,4 @@
-! rofi
+!! rofi
 rofi.modi: drun
 rofi.font: Hack 15
 rofi.width: 100
@@ -18,12 +18,267 @@ rofi.show-icons: true
 rofi.icon-theme: gnome
 rofi.drun-show-actions: true
 
+!! Fonts
+Xft.dpi: 96
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgba
+Xft.autohint: false
+Xft.hintstyle: hintsfull
 
-*black: #000000
-*grey: #333333
-*white: #FFFFFF
-*transparent: #00000000
-*blue: #333399
-*lightblue: #3366CC
-*aqua: #3399FF
-*red: #FF0000
+!! _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+!!
+!!	   ______      __               
+!!	  / ____/___  / /___  __________
+!!	 / /   / __ \/ / __ \/ ___/ ___/
+!!	/ /___/ /_/ / / /_/ / /  (__  ) 
+!!	\____/\____/_/\____/_/  /____/  
+!!
+!! Created By Aditya Shakya @adi1090x
+!!
+!! _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+!! Special Colors
+colors.bg: #2f343f
+colors.fg: #f3f4f5
+colors.inactive-fg: #676e7d
+colors.urgent-bg: #e53935
+colors.accent: #5193e1
+
+
+!! Bars
+colors.bi: #00BCD4
+colors.be: #00BCD4
+colors.bf: #43a047
+colors.bn: #43a047
+colors.bm: #fdd835
+colors.bd: #e53935
+
+
+colors.trans: #00000000
+colors.white: #FFFFFF
+colors.black: #000000
+
+!! Material Colors
+
+colors.red: #e53935
+colors.pink: #d81b60
+colors.purple: #8e24aa
+colors.deep-purple: #5e35b1
+colors.indigo: #3949ab
+colors.blue: #1e88e5
+colors.light-blue: #039be5
+colors.cyan: #00acc1
+colors.teal: #00897b
+colors.green: #43a047
+colors.light-green: #7cb342
+colors.lime: #c0ca33
+colors.yellow: #fdd835
+colors.amber: #ffb300
+colors.orange: #fb8c00
+colors.deep-orange: #f4511e
+colors.brown: #6d4c41
+colors.grey: #757575
+colors.blue-gray: #546e7a
+
+!! Material Colors Shades
+
+! Amber
+colors.amshade1: #FF6F00
+colors.amshade2: #FF8F00
+colors.amshade3: #FFA000
+colors.amshade4: #FFB300
+colors.amshade5: #FFC107
+colors.amshade6: #FFCA28
+colors.amshade7: #FFD54F
+colors.amshade8: #FFE082
+
+! Blue 
+colors.blshade1: #0D47A1
+colors.blshade2: #1565C0
+colors.blshade3: #1976D2
+colors.blshade4: #1E88E5
+colors.blshade5: #2196F3
+colors.blshade6: #42A5F5
+colors.blshade7: #64B5F6
+colors.blshade8: #90CAF9
+
+! Blue-Grey
+colors.bgshade1: #263238
+colors.bgshade2: #37474F
+colors.bgshade3: #455A64
+colors.bgshade4: #546E7A
+colors.bgshade5: #607D8B
+colors.bgshade6: #78909C
+colors.bgshade7: #90A4AE
+colors.bgshade8: #B0BEC5
+
+! Brown
+colors.brshade1: #3E2723
+colors.brshade2: #4E342E
+colors.brshade3: #5D4037
+colors.brshade4: #6D4C41
+colors.brshade5: #795548
+colors.brshade6: #8D6E63
+colors.brshade7: #A1887F
+colors.brshade8: #BCAAA4
+
+! Cyan
+colors.cyshade1: #006064
+colors.cyshade2: #00838F
+colors.cyshade3: #0097A7
+colors.cyshade4: #00ACC1
+colors.cyshade5: #00BCD4
+colors.cyshade6: #26C6DA
+colors.cyshade7: #4DD0E1
+colors.cyshade8: #80DEEA
+
+! Deep-Orange
+colors.doshade1: #BF360C
+colors.doshade2: #D84315
+colors.doshade3: #E64A19
+colors.doshade4: #F4511E
+colors.doshade5: #FF5722
+colors.doshade6: #FF7043
+colors.doshade7: #FF8A65
+colors.doshade8: #FFAB91
+
+! Deep-Purple
+colors.dpshade1: #311B92
+colors.dpshade2: #4527A0
+colors.dpshade3: #512DA8
+colors.dpshade4: #5E35B1
+colors.dpshade5: #673AB7
+colors.dpshade6: #7E57C2
+colors.dpshade7: #9575CD
+colors.dpshade8: #B39DDB
+
+! Green
+colors.grshade1: #1B5E20
+colors.grshade2: #2E7D32
+colors.grshade3: #388E3C
+colors.grshade4: #43A047
+colors.grshade5: #4CAF50
+colors.grshade6: #66BB6A
+colors.grshade7: #81C784
+colors.grshade8: #A5D6A7
+
+! Grey
+colors.greshade1: #212121
+colors.greshade2: #424242
+colors.greshade3: #616161
+colors.greshade4: #757575
+colors.greshade5: #9E9E9E
+colors.greshade6: #BDBDBD
+colors.greshade7: #D4D4D4
+colors.greshade8: #EEEEEE
+
+! Indigo
+colors.inshade1: #1A237E
+colors.inshade2: #283593
+colors.inshade3: #303F9F
+colors.inshade4: #3949AB
+colors.inshade5: #3F51B5
+colors.inshade6: #5C6BC0
+colors.inshade7: #7986CB
+colors.inshade8: #9FA8DA
+
+! Light-Blue
+colors.lbshade1: #01579B
+colors.lbshade2: #0277BD
+colors.lbshade3: #0288D1
+colors.lbshade4: #039BE5
+colors.lbshade5: #03A9F4
+colors.lbshade6: #29B6F6
+colors.lbshade7: #4FC3F7
+colors.lbshade8: #81D4FA
+
+! Light-Green
+colors.lgshade1: #33691E
+colors.lgshade2: #558B2F
+colors.lgshade3: #689F38
+colors.lgshade4: #7CB342
+colors.lgshade5: #8BC34A
+colors.lgshade6: #9CCC65
+colors.lgshade7: #AED581
+colors.lgshade8: #C5E1A5
+
+! Lime
+colors.lishade1: #827717
+colors.lishade2: #9E9D24
+colors.lishade3: #AFB42B
+colors.lishade4: #C0CA33
+colors.lishade5: #CDDC39
+colors.lishade6: #D4E157
+colors.lishade7: #DCE775
+colors.lishade8: #E6EE9C
+
+! Orange
+colors.orshade1: #E65100
+colors.orshade2: #EF6C00
+colors.orshade3: #F57C00
+colors.orshade4: #FB8C00
+colors.orshade5: #FF9800
+colors.orshade6: #FFA726
+colors.orshade7: #FFB74D
+colors.orshade8: #FFCC80
+
+! Pink
+colors.pishade1: #880E4F
+colors.pishade2: #AD1457
+colors.pishade3: #C2185B
+colors.pishade4: #D81B60
+colors.pishade5: #E91E63
+colors.pishade6: #EC407A
+colors.pishade7: #F06292
+colors.pishade8: #F48FB1
+
+! Purple
+colors.prshade1: #4A148C
+colors.prshade2: #6A1B9A
+colors.prshade3: #7B1FA2
+colors.prshade4: #8E24AA
+colors.prshade5: #9C27B0
+colors.prshade6: #AB47BC
+colors.prshade7: #BA68C8
+colors.prshade8: #CE93D8
+
+! Red
+colors.reshade1: #B71C1C
+colors.reshade2: #C62828
+colors.reshade3: #D32F2F
+colors.reshade4: #E53935
+colors.reshade5: #EE413D
+colors.reshade6: #EF5350
+colors.reshade7: #E57373
+colors.reshade8: #EF9A9A
+
+! Teal
+colors.teshade1: #004D40
+colors.teshade2: #00695C
+colors.teshade3: #00796B
+colors.teshade4: #00897B
+colors.teshade5: #009688
+colors.teshade6: #26A69A
+colors.teshade7: #4DB6AC
+colors.teshade8: #80CBC4
+
+! Yellow
+colors.yeshade1: #F57F17
+colors.yeshade2: #F9A825
+colors.yeshade3: #FBC02D
+colors.yeshade4: #FDD835
+colors.yeshade5: #FFEB3B
+colors.yeshade6: #FFEE58
+colors.yeshade7: #FFF176
+colors.yeshade8: #FFF59D
+
+!! _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+!!	    __________  ______      __               
+!!	   / ____/ __ \/ ____/___  / /___  __________
+!!	  / __/ / / / / /   / __ \/ / __ \/ ___/ ___/
+!!	 / /___/ /_/ / /___/ /_/ / / /_/ / /  (__  ) 
+!!	/_____/\____/\____/\____/_/\____/_/  /____/  
+!!
+!! _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+

@@ -1,35 +1,55 @@
 set $mod Mod4
 set $terminal gnome-terminal
 
-font pango:Hack 10
+font pango:Hack 9
 
 #######################################
 ##             COLORS                ##
 #######################################
 
-set_from_resource $blue        blue        #000000
-set_from_resource $lightblue   lightblue   #000000
-set_from_resource $aqua        aqua        #000000
-set_from_resource $red         red         #000000
-set_from_resource $black       black       #000000
-set_from_resource $grey        grey        #000000
-set_from_resource $white       white       #000000
-set_from_resource $transparent transparent #000000
+# -- active client
+set_from_resource $active-bg             colors.bg           #000000
+set_from_resource $active-border         colors.fg           #000000
+set_from_resource $active-fg             colors.fg           #000000
+set_from_resource $active-indicator      colors.accent       #000000
+# -- inactive client
+set_from_resource $inactive-bg           colors.bg           #000000
+set_from_resource $inactive-border       colors.bg           #000000
+set_from_resource $inactive-fg           colors.inactive-fg  #000000
+set_from_resource $inactive-indicator    colors.accent       #000000
+# -- urgent client
+set_from_resource $urgent-bg              colors.urgent-bg   #000000
+set_from_resource $urgent-border          colors.urgent-bg   #000000
+set_from_resource $urgent-fg              colors.fg          #000000
+set_from_resource $urgent-indicator       colors.accent      #000000
+
+## BAR Colors
+set_from_resource $bar-bg                 colors.bg          #000000
+set_from_resource $bar-fg                 colors.fg          #000000
+## -- focused workspace
+set_from_resource $bar-focused-ws-fg      colors.fg          #000000
+set_from_resource $bar-focused-ws-bg      colors.accent      #000000
+set_from_resource $bar-focused-ws-border  colors.accent      #000000
+## -- inactive workspace
+set_from_resource $bar-inactive-ws-fg     colors.inactive-fg #000000
+set_from_resource $bar-inactive-ws-bg     colors.bg          #000000
+set_from_resource $bar-inactive-ws-border colors.bg          #000000
+
 
 # window colors
-#                       border              background         text                 indicator
-client.focused          $aqua               $blue              $white               $white
-client.unfocused        $grey               $black             $white               $white
-client.focused_inactive $black              $black             $white               $white
-client.urgent           $red                $red               $black               $white
+#                         background      border                 text                indicator
+client.focused            $active-bg      $active-border         $active-fg          $active-indicator
+client.unfocused          $inactive-bg    $inactive-border       $inactive-fg        $inactive-indicator
+client.focused_inactive   $inactive-bg    $inactive-border       $inactive-fg        $inactive-indicator
+client.urgent             $urgent-bg      $urgent-border         $urgent-fg          $urgent-indicator
 
 #######################################
 
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 3
 
 smart_gaps on
-gaps inner 10
-gaps outer -8
+gaps inner 5
+gaps outer 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -41,17 +61,13 @@ bindsym $mod+Shift+Return exec gnome-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# screenshot
-bindsym --release Print exec --no-startup-id "maim -p 0 -c 0.96,0.5,0.09 $HOME/Pictures/Screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png"
-bindsym --release Mod1+Sys_Req exec --no-startup-id "maim -i $(xdotool getactivewindow) $HOME/Pictures/Screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png"
-
 #######################################
 ##              SOUND                ##
 #######################################
 
 #bindsym $mod+Ctrl+m exec gnome-terminal -e 'alsamixer'
 exec --no-startup-id pulseaudio & 
-exec --no-startup-id pa-applet & 
+#exec --no-startup-id pa-applet & 
 bindsym $mod+Ctrl+m exec pavucontrol
 
 #######################################
@@ -73,10 +89,16 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 
 #######################################
 #######################################
-##         START APPLICATIONS        ##
+##       CUSTOM APPS BINDSYMS        ##
 #######################################
 
-bindsym $mod+d exec --no-startup-id dmenu_run -nb "$blue" -nf "$white" -sb "$lightblue" -sf "$white" -fn "Hack 8"
+# screenshot
+bindsym --release Print exec --no-startup-id "maim -p 0 -c 0.96,0.5,0.09 $HOME/Pictures/Screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png"
+bindsym --release Mod1+Sys_Req exec --no-startup-id "maim -i $(xdotool getactivewindow) $HOME/Pictures/Screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png"
+# ----------
+
+# TODO: dunst time: bindsym $mod+t exec 
+bindsym $mod+d exec --no-startup-id dmenu_run -nb "$bar-bg" -nf "$bar-inactive-ws-fg" -sb "$bar-bg" -sf "$bar-fg" -fn "Hack 6"
 bindsym $mod+Shift+d exec --no-startup-id rofi -show drun
 bindsym $mod+F2 exec palemoon
 bindsym $mod+F3 exec nautilus
@@ -86,6 +108,7 @@ bindsym $mod+F3 exec nautilus
 ##           AUTOSTART               ##
 #######################################
 
+#exec --no-startup-id "~/.config/polybar/launch.sh"
 exec "setxkbmap -layout us,ru && setxkbmap -option 'grp:alt_shift_toggle'"
 exec --no-startup-id "feh --bg-scale --randomize ~/Pictures/Wallpapers/*"
 exec --no-startup-id compton -b
@@ -106,22 +129,6 @@ for_window [window_role="Preferences"] floating enable
 
 for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
-
-for_window [class="(?i)gsimplecal"] floating enable, move position mouse, move down $height px
-for_window [class="(?i)qemu-system"] floating enable
-for_window [class="(?i)VirtualBox" title="(?i)Manager"] floating enable
-for_window [class="(?i)VirtualBox"] floating enable
-for_window [class="(?i)blueman"] floating enable
-for_window [class="(?i)pinentry"] floating enable
-for_window [class="(?i)nm-connection-editor"] floating enable
-
-for_window [instance="__scratchpad"] floating enable
-for_window [instance="__nmtui"] floating enable
-for_window [class="(?i)recordmydesktop"] floating enable
-
-for_window [class="(?i)pavucontrol"] floating enable, move position mouse
-for_window [class="(?i)pavucontrol" instance="pavucontrol-bar"] move down $height px
-
 
 #######################################
 
@@ -249,21 +256,26 @@ hide_edge_borders both
 bar {
     status_command i3blocks -c ~/.config/i3/i3blocks.conf
     i3bar_command i3bar 
+    mode hide
+    modifier None
+
     position top
     strip_workspace_numbers yes
     bindsym button4 nop
     bindsym button5 nop
     tray_padding 2
-    colors {
-        statusline         $white
-        background         $blue
-        separator          $blue
 
-#                          BORDER       BACKGROUND   TEXT
-        focused_workspace  $blue        $lightblue   $white
-        inactive_workspace $blue        $blue        $white
-        active_workspace   $blue        $blue        $aqua
-        urgent_workspace   $red         $red         $white
-	binding_mode       $red         $red         $white
+    colors {
+        statusline         $bar-fg
+        background         $bar-bg
+        separator          $bar-bg
+
+#                          BORDER                   BACKGROUND             TEXT
+        focused_workspace  $bar-focused-ws-border   $bar-focused-ws-bg     $bar-focused-ws-fg
+        inactive_workspace $bar-inactive-ws-border  $bar-inactive-ws-bg    $bar-inactive-ws-fg
+        urgent_workspace   $urgent-border           $urgent-bg             $urgent-fg
+	binding_mode       $urgent-border           $urgent-bg             $urgent-fg
     }
 }
+
+bindsym $mod+b bar mode toggle
