@@ -1,0 +1,4 @@
+export ZDOTDIR=$HOME/.config/zsh
+export EDITOR='vim'
+export PROMPT='%n@%m %F{green}%0~%f>'
+export PATH=$PATH:$HOME/.local/bin

@@ -1,0 +1,20 @@
+# Some nice startup applications
+
+# Scripts are located in ~/.local/bin folder
+# Probably, you need to add it to the $PATH
+
+dwmbar &              # script for updating the status bar
+setbg &               # script for setting background
+compton -b &          # Composite manager for transparency
+nm-applet &           # Wi-fi applet
+udiskie -Ftn2 &       # Mounting devices applet
+#pa-applet &           # Audio applet
+blueman-applet &      # Bluetooth applet
+xset r rate 250 25 &  # Speed xrate up
+pulseaudio &  # ???
+mpd &         # ???
+lxqt-policykit-agent & # ???
+unclutter &            # Remove mouse when idle
+
+# Keyboard layout toggling
+setxkbmap -layout us,ru && setxkbmap -option 'grp:alt_shift_toggle' &

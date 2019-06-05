@@ -1,5 +1,7 @@
 set $mod Mod4
-set $terminal gnome-terminal
+set $terminal st
+set $terminal_floating st -c floating-st-256color
+set $reboot sudo -A reboot
 
 font pango:Hack 9
 
@@ -7,59 +9,34 @@ font pango:Hack 9
 ##             COLORS                ##
 #######################################
 
-# -- active client
-set_from_resource $active-bg             colors.bg           #000000
-set_from_resource $active-border         colors.fg           #000000
-set_from_resource $active-fg             colors.fg           #000000
-set_from_resource $active-indicator      colors.accent       #000000
-# -- inactive client
-set_from_resource $inactive-bg           colors.bg           #000000
-set_from_resource $inactive-border       colors.bg           #000000
-set_from_resource $inactive-fg           colors.inactive-fg  #000000
-set_from_resource $inactive-indicator    colors.accent       #000000
-# -- urgent client
-set_from_resource $urgent-bg              colors.urgent-bg   #000000
-set_from_resource $urgent-border          colors.urgent-bg   #000000
-set_from_resource $urgent-fg              colors.fg          #000000
-set_from_resource $urgent-indicator       colors.accent      #000000
 
-## BAR Colors
-set_from_resource $bar-bg                 colors.bg          #000000
-set_from_resource $bar-fg                 colors.fg          #000000
-## -- focused workspace
-set_from_resource $bar-focused-ws-fg      colors.fg          #000000
-set_from_resource $bar-focused-ws-bg      colors.accent      #000000
-set_from_resource $bar-focused-ws-border  colors.accent      #000000
-## -- inactive workspace
-set_from_resource $bar-inactive-ws-fg     colors.inactive-fg #000000
-set_from_resource $bar-inactive-ws-bg     colors.bg          #000000
-set_from_resource $bar-inactive-ws-border colors.bg          #000000
+set_from_resource $bg   color0 #f0f0f0
+set_from_resource $fg   color1 #f0f0f0
+set_from_resource $i-fg color2 #f0f0f0
+set_from_resource $u-bg color3 #f0f0f0
+set_from_resource $ind  color4 #f0f0f0
+
+set $tr #00000000
 
 
 # window colors
-#                         background      border                 text                indicator
-client.focused            $active-bg      $active-border         $active-fg          $active-indicator
-client.unfocused          $inactive-bg    $inactive-border       $inactive-fg        $inactive-indicator
-client.focused_inactive   $inactive-bg    $inactive-border       $inactive-fg        $inactive-indicator
-client.urgent             $urgent-bg      $urgent-border         $urgent-fg          $urgent-indicator
+#                         background   border     text       indicator  child-border
+client.focused            $bg          $fg        $fg        $ind       $fg
+client.unfocused          $bg          $tr        $i-fg      $ind       $bg
+client.focused_inactive   $bg          $tr        $i-fg      $ind       $bg
+client.urgent             $u-bg        $u-bg      $fg        $ind       $bg
+client.background         $bg
 
 #######################################
 
-for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 1
 
 smart_gaps on
-gaps inner 5
+gaps inner 10
 gaps outer 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
-
-# start a terminal
-bindsym $mod+Return exec gnome-terminal
-bindsym $mod+Shift+Return exec gnome-terminal
-
-# kill focused window
-bindsym $mod+Shift+q kill
 
 #######################################
 ##              SOUND                ##
@@ -97,30 +74,57 @@ bindsym --release Print exec --no-startup-id "maim -p 0 -c 0.96,0.5,0.09 $HOME/P
 bindsym --release Mod1+Sys_Req exec --no-startup-id "maim -i $(xdotool getactivewindow) $HOME/Pictures/Screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png"
 # ----------
 
+##Toggle POLYBAR
+#bindsym $mod+b exec polybar-msg cmd toggle
+
 # TODO: dunst time: bindsym $mod+t exec 
-bindsym $mod+d exec --no-startup-id dmenu_run -nb "$bar-bg" -nf "$bar-inactive-ws-fg" -sb "$bar-bg" -sf "$bar-fg" -fn "Hack 6"
+bindsym $mod+d exec --no-startup-id dmenu_run -nb "$bg" -nf "$i-fg" -sb "$bg" -sf "$fg" -fn "Hack:size=11"
 bindsym $mod+Shift+d exec --no-startup-id rofi -show drun
-bindsym $mod+F2 exec palemoon
-bindsym $mod+F3 exec nautilus
 
 #######################################
 #######################################
 ##           AUTOSTART               ##
 #######################################
 
+# MPD
+exec --no-startup-id mpd
 #exec --no-startup-id "~/.config/polybar/launch.sh"
+# Keyboard layouts
 exec "setxkbmap -layout us,ru && setxkbmap -option 'grp:alt_shift_toggle'"
+# Wallpaper
 exec --no-startup-id "feh --bg-scale --randomize ~/Pictures/Wallpapers/*"
+# Composite Manager
 exec --no-startup-id compton -b
+# Network tray applet
 exec --no-startup-id nm-applet &
+# Bluetooth tray applet
+exec --no-startup-id blueman-applet &
+# Mounting tray applet
 exec --no-startup-id udiskie -Ftn2 &
 #exec --no-startup-id xfce4-power-manager &
 #exec --no-startup-id xautolock -time 10 -notify 30 &
 
 #######################################
 #######################################
+##         DROPDOWN WINDOWS          ##
+#######################################
+
+# General dropdown window traits. The order can matter.
+for_window [instance="dropdown_*"] floating enable
+for_window [instance="dropdown_*"] move scratchpad
+for_window [instance="dropdown_*"] sticky enable
+for_window [instance="dropdown_*"] scratchpad show
+for_window [instance="dropdown_tmuxdd"] resize set 625 450
+for_window [instance="dropdown_dropdowncalc"] resize set 800 300
+for_window [instance="dropdown_tmuxdd"] border pixel 3
+for_window [instance="dropdown_dropdowncalc"] border pixel 2
+for_window [instance="dropdown_*"] move position center
+
+#######################################
+#######################################
 ##       FLOATING APPLICATIONS       ##
 #######################################
+
 
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="bubble"] floating enable
@@ -130,7 +134,39 @@ for_window [window_role="Preferences"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
 
+for_window [class="floating-st-256color"] floating enable, resize grow left 250, resize grow right 250, resize grow down 50, resize grow up 100
+
 #######################################
+
+# start a terminal
+bindsym $mod+Return exec $terminal
+bindsym $mod+Shift+Return exec $terminal_floating
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+bindsym $mod+Tab workspace prev
+
+bindsym $mod+grave exec --no-startup-id dmenuunicode
+
+bindsym $mod+Shift+w exec --no-startup-id $BROWSER
+
+bindsym $mod+t split toggle
+
+bindsym $mod+i exec $term -e htop
+
+bindsym $mod+s       gaps inner current plus 5
+bindsym $mod+Shift+s gaps inner current minus 5
+
+bindsym $mod+z       gaps outer current plus 5
+bindsym $mod+Shift+z gaps outer current minus 5
+
+bindsym $mod+F2	 restart
+bindsym $mod+F3  exec --no-startup-id displayselect
+bindsym $mod+F4  exec --no-startup-id prompt "Hibernate computer?" "$hibernate"
+bindsym $mod+F9	 exec --no-startup-id dmenumount
+bindsym $mod+F10 exec --no-startup-id dmenuumount
+bindsym $mod+F11 exec --no-startup-id ducksearch
 
 # change focus
 bindsym $mod+h focus left
@@ -258,24 +294,12 @@ bar {
     i3bar_command i3bar 
     mode hide
     modifier None
-
     position top
+
     strip_workspace_numbers yes
     bindsym button4 nop
     bindsym button5 nop
     tray_padding 2
-
-    colors {
-        statusline         $bar-fg
-        background         $bar-bg
-        separator          $bar-bg
-
-#                          BORDER                   BACKGROUND             TEXT
-        focused_workspace  $bar-focused-ws-border   $bar-focused-ws-bg     $bar-focused-ws-fg
-        inactive_workspace $bar-inactive-ws-border  $bar-inactive-ws-bg    $bar-inactive-ws-fg
-        urgent_workspace   $urgent-border           $urgent-bg             $urgent-fg
-	binding_mode       $urgent-border           $urgent-bg             $urgent-fg
-    }
 }
 
 bindsym $mod+b bar mode toggle
