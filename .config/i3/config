@@ -117,7 +117,7 @@ bindsym $mod+Return exec $terminal
 bindsym $mod+Shift+Return exec $terminal_floating
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+Shift+c kill
 
 bindsym $mod+Tab workspace prev
 
