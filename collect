@@ -9,38 +9,23 @@ rm -rf Pictures
 rm -f .Xresources
 rm -f .xinitrc
 rm -f .xprofile
-rm -f .zprofile
-rm -f .zvars
+rm -f .bash_profile
+rm -f .bashrc
 
 echo "Copy dotfiles in home dir..."
 cp $HOME/.Xresources ./
 cp $HOME/.xinitrc ./
 cp $HOME/.xprofile ./
-cp $HOME/.zprofile ./
-cp $HOME/.zvars ./
+cp $HOME/.bash_profile ./
+cp $HOME/.bashrc ./
 
 echo "Copy .config dir..."
 mkdir .config
 cp $HOME/.config/compton.conf .config/
 cp -r $HOME/.config/i3 .config/
-cp -r $HOME/.config/i3status .config/
-cp -r $HOME/.config/polybar .config/
-cp -r $HOME/.config/zsh .config/
 
-echo "Copy .fonts dir..."
-cp -r $HOME/.fonts .
 
 echo "Copy Pictures dir..."
 mkdir Pictures
 mkdir Pictures/Screenshots
 cp -r $HOME/Pictures/Wallpapers Pictures/
-
-echo "Copy etc/polkit-1 dir..."
-sudo mkdir -p etc/polkit-1/rules.d
-sudo cp /etc/polkit-1/rules.d/50-default.rules etc/polkit-1/rules.d/
-sudo cp /etc/polkit-1/rules.d/51-mount.rules etc/polkit-1/rules.d/
-sudo cp /etc/polkit-1/rules.d/85-power.rules etc/polkit-1/rules.d/
-
-echo "Copy etc/systemd dir..."
-sudo mkdir -p etc/systemd
-sudo cp /etc/systemd/logind.conf etc/systemd/
