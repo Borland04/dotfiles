@@ -3,29 +3,7 @@ set $terminal st
 set $terminal_floating st -c floating-st-256color
 set $reboot sudo -A reboot
 
-font pango:Hack 9
-
-#######################################
-##             COLORS                ##
-#######################################
-
-
-set_from_resource $bg   color0 #f0f0f0
-set_from_resource $fg   color1 #f0f0f0
-set_from_resource $i-fg color2 #f0f0f0
-set_from_resource $u-bg color3 #f0f0f0
-set_from_resource $ind  color4 #f0f0f0
-
-set $tr #00000000
-
-
-# window colors
-#                         background   border     text       indicator  child-border
-client.focused            $bg          $fg        $fg        $ind       $fg
-client.unfocused          $bg          $tr        $i-fg      $ind       $bg
-client.focused_inactive   $bg          $tr        $i-fg      $ind       $bg
-client.urgent             $u-bg        $u-bg      $fg        $ind       $bg
-client.background         $bg
+font pango:Hack 10
 
 #######################################
 
@@ -74,11 +52,8 @@ bindsym --release Print exec --no-startup-id "maim -p 0 -c 0.96,0.5,0.09 $HOME/P
 bindsym --release Mod1+Sys_Req exec --no-startup-id "maim -i $(xdotool getactivewindow) $HOME/Pictures/Screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png"
 # ----------
 
-##Toggle POLYBAR
-#bindsym $mod+b exec polybar-msg cmd toggle
-
 # TODO: dunst time: bindsym $mod+t exec 
-bindsym $mod+d exec --no-startup-id dmenu_run -nb "$bg" -nf "$i-fg" -sb "$bg" -sf "$fg" -fn "Hack:size=11"
+bindsym $mod+d exec --no-startup-id dmenu_run -fn "Monospace:size=11"
 bindsym $mod+Shift+d exec --no-startup-id rofi -show drun
 
 #######################################
@@ -86,23 +61,23 @@ bindsym $mod+Shift+d exec --no-startup-id rofi -show drun
 ##           AUTOSTART               ##
 #######################################
 
-# MPD
-exec --no-startup-id mpd
-#exec --no-startup-id "~/.config/polybar/launch.sh"
-# Keyboard layouts
-exec "setxkbmap -layout us,ru && setxkbmap -option 'grp:alt_shift_toggle'"
-# Wallpaper
-exec --no-startup-id "feh --bg-scale --randomize ~/Pictures/Wallpapers/*"
-# Composite Manager
-exec --no-startup-id compton -b
-# Network tray applet
-exec --no-startup-id nm-applet &
-# Bluetooth tray applet
-exec --no-startup-id blueman-applet &
-# Mounting tray applet
-exec --no-startup-id udiskie -Ftn2 &
-#exec --no-startup-id xfce4-power-manager &
-#exec --no-startup-id xautolock -time 10 -notify 30 &
+## MPD
+#exec --no-startup-id mpd
+##exec --no-startup-id "~/.config/polybar/launch.sh"
+## Keyboard layouts
+#exec "setxkbmap -layout us,ru && setxkbmap -option 'grp:alt_shift_toggle'"
+## Wallpaper
+#exec --no-startup-id "feh --bg-scale --randomize ~/Pictures/Wallpapers/*"
+## Composite Manager
+#exec --no-startup-id compton -b
+## Network tray applet
+#exec --no-startup-id nm-applet &
+## Bluetooth tray applet
+#exec --no-startup-id blueman-applet &
+## Mounting tray applet
+#exec --no-startup-id udiskie -Ftn2 &
+##exec --no-startup-id xfce4-power-manager &
+##exec --no-startup-id xautolock -time 10 -notify 30 &
 
 #######################################
 #######################################
@@ -124,7 +99,6 @@ for_window [instance="dropdown_*"] move position center
 #######################################
 ##       FLOATING APPLICATIONS       ##
 #######################################
-
 
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="bubble"] floating enable
@@ -251,8 +225,6 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)

@@ -7,8 +7,7 @@
 # file is run automatically if someone uses a display manager (login screen)
 # and so they are needed there. To prevent doubling up commands, I source them
 # here with the line below.
-
 [ -f ~/.xprofile ] && . ~/.xprofile
 
-# Here we start dwm.
-dwm
+
+i3

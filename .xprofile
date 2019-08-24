@@ -3,7 +3,6 @@
 # Scripts are located in ~/.local/bin folder
 # Probably, you need to add it to the $PATH
 
-dwmbar &              # script for updating the status bar
 setbg &               # script for setting background
 compton -b &          # Composite manager for transparency
 nm-applet &           # Wi-fi applet

@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-LO=$(xkblayout-state print %e)
-if [ "$LO" == 'us' ]
-then
-        setxkbmap -layout ru
-else
-        setxkbmap -layout us
-fi
