@@ -1,0 +1,30 @@
+# SECTION: Default ignore list
+
+# Comments and blank lines are allowed.
+
+RCS
+.+,v
+
+CVS
+\.\#.+       # CVS conflict files / emacs lock files
+\.cvsignore
+
+\.svn
+_darcs
+\.hg
+
+\.git
+\.gitignore
+
+.+~          # emacs backup files
+\#.*\#       # emacs autosave files
+
+^/README.*
+^/LICENSE.*
+^/COPYING
+
+# ENDOF SECTION: Default ignore list
+
+# SECTION: custom ignore list
+run.sh
+# ENDOF SECTION: custom ignore list
