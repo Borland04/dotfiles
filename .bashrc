@@ -71,3 +71,5 @@ alias gpsh="git push"
 alias gpl="git pull"
 alias gl="git log"
 alias gch="git checkout"
+alias lg="lazygit"
+
